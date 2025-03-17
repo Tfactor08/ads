@@ -1,0 +1,100 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct node_t node_t;
+
+node_t* init_array();
+void go_through(node_t*);
+void free_array(node_t*);
+void add_element(node_t*, int, int);
+
+struct node_t {
+    int data;
+    node_t *next;
+};
+
+// 13.03.25
+// current version is memory unsafe -- we don't free the memory we allocate
+// 14.03.25
+// now it has to be safe but not sure
+// 16.03.25
+// now can add new element for any index including adding to the end
+// TODO
+// add returning error codes in 'add_element()'
+
+int main()
+{
+    node_t *ap = init_array();
+    go_through(ap);
+    putchar('\n');
+    add_element(ap, 5, 69);
+    go_through(ap);
+    free_array(ap);
+
+    return 0;
+}
+
+node_t* init_array()
+{
+    node_t *p_start = (node_t *)malloc(sizeof(node_t));
+    node_t *p = p_start;
+
+    for (int i = 0; i < 4; ++i) {
+        p->data = i; // -> means (*p).
+        p->next = (node_t *)malloc(sizeof(node_t));
+        p = p->next;
+    }
+    p->data = 4; // for the last node we have to do it outside the loop because otherwise in the loop we would allocate extra memory we don't need
+    p->next = NULL;
+
+    return p_start;
+}
+
+// *pa -- the first node in the array
+void go_through(node_t *pa)
+{
+    while (pa != NULL) {
+        printf("%d\n", pa->data);
+        pa = pa->next;
+    }
+}
+
+// add new element to the array at the given index
+// *pa -- the first node in the array
+void add_element(node_t *pa, int index, int element)
+{
+    int i = 0;
+
+    if (index == 0) {
+        // to add an element to the start of the array we just need to add new node that points to the old starting node. But in that case the address of the starting node will change and we would have to return it. So instead we use the old starting node address to create new one and replace its content to a new address
+        node_t *p_new = (node_t *)malloc(sizeof(node_t)); // address to place the old starting node
+        p_new->data = pa->data;
+        p_new->next = pa->next;
+        pa->data = element;
+        pa->next = p_new;
+        return;
+    }
+
+    while (pa != NULL) {
+        if (i != index - 1) {
+            pa = pa->next;
+            i++;
+            continue;
+        }
+
+        node_t *p_new = (node_t *)malloc(sizeof(node_t));
+        p_new->data = element;
+        p_new->next = pa->next;
+        pa->next = p_new;
+        return;
+    }
+}
+
+void free_array(node_t *pa)
+{
+    while (pa != NULL) {
+        node_t *pnext = pa->next;
+        free(pa);
+        pa = pnext;
+    }
+}
