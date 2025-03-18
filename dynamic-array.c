@@ -3,7 +3,7 @@
 
 typedef struct node_t node_t;
 
-node_t* init_array();
+node_t* init_array(int n);
 void go_through(node_t*);
 void free_array(node_t*);
 void add_element(node_t*, int, int);
@@ -24,7 +24,7 @@ struct node_t {
 
 int main()
 {
-    node_t *ap = init_array();
+    node_t *ap = init_array(5);
     go_through(ap);
     putchar('\n');
     add_element(ap, 5, 69);
@@ -34,17 +34,18 @@ int main()
     return 0;
 }
 
-node_t* init_array()
+node_t* init_array(int n)
 {
     node_t *p_start = (node_t *)malloc(sizeof(node_t));
     node_t *p = p_start;
 
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < n-1; ++i) {
         p->data = i; // -> means (*p).
         p->next = (node_t *)malloc(sizeof(node_t));
         p = p->next;
     }
-    p->data = 4; // for the last node we have to do it outside the loop because otherwise in the loop we would allocate extra memory we don't need
+    p->data = n-1; // for the last node we have to do it outside the loop because otherwise in the
+                   // loop we would allocate extra memory we don't need
     p->next = NULL;
 
     return p_start;
@@ -66,7 +67,10 @@ void add_element(node_t *pa, int index, int element)
     int i = 0;
 
     if (index == 0) {
-        // to add an element to the start of the array we just need to add new node that points to the old starting node. But in that case the address of the starting node will change and we would have to return it. So instead we use the old starting node address to create new one and replace its content to a new address
+        // to add an element to the start of the array we just need to add new node that points
+        // to the old starting node. But in that case the address of the starting node will
+        // change and we would have to return it. So instead we use the old starting node address
+        // to create new one and replace its content to a new address
         node_t *p_new = (node_t *)malloc(sizeof(node_t)); // address to place the old starting node
         p_new->data = pa->data;
         p_new->next = pa->next;
