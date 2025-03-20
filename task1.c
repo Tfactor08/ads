@@ -15,10 +15,11 @@ struct node_t {
 void add_zeros(node_t *ap)
 {
     int i = 0;
+    node_t *start_p = ap;
     
     while (ap != NULL) {
         if (ap->data < 0) {
-            add_element(ap, i+1, 0);
+            add_element(start_p, i+1, 0);
         }
         ap = ap->next;
         i++;
