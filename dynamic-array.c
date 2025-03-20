@@ -31,7 +31,7 @@ node_t* init_array(int n)
     srand(time(NULL));
 
     for (int i = 0; i < n-1; ++i) {
-        p->data = rand() % 10; // -> means (*p).
+        p->data = rand() % 21 - 10; // -> means (*p).
         p->next = (node_t *)malloc(sizeof(node_t));
         p = p->next;
     }
