@@ -1,2 +1,1 @@
-don't know how to handle multiple main funcs because dynamic-array.c is not even a library (maybe it should be);
-also no clue how to manage situation when some file is changed in a secondary branch (alerady know about rebase but it doesn't seem logical because in that case main branch 'bases' on a secondary one) and need to be synced with main branch. (Git seems even harder than before)
+Get rid of Vim swap files as they remain when switching branches and crime conflicts
