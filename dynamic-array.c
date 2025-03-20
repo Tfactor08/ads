@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <time.h>
 #include <stdio.h>
 
 typedef struct node_t node_t;
@@ -26,6 +27,8 @@ node_t* init_array(int n)
 {
     node_t *p_start = (node_t *)malloc(sizeof(node_t));
     node_t *p = p_start;
+
+    srand(time(NULL));
 
     for (int i = 0; i < n-1; ++i) {
         p->data = rand() % 10; // -> means (*p).
