@@ -22,18 +22,6 @@ struct node_t {
 // TODO
 // add returning error codes in 'add_element()'
 
-//int main()
-//{
-//    node_t *ap = init_array(5);
-//    go_through(ap);
-//    putchar('\n');
-//    add_element(ap, 5, 69);
-//    go_through(ap);
-//    free_array(ap);
-//
-//    return 0;
-//}
-
 node_t* init_array(int n)
 {
     node_t *p_start = (node_t *)malloc(sizeof(node_t));
