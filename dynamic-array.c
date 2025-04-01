@@ -59,8 +59,8 @@ void add_element(node_t *pa, int index, int element)
 
     if (index == 0) {
         // to add an element to the start of the array we just need to add new node that points
-        // to the old starting node. But in that case the address of the starting node will
-        // change and we would have to return it. So instead we use the old starting node address
+        // to the old starting node. But in that case the address of the starting node will be
+        // changed and we would have to return it. So instead we use the old starting node address
         // to create new one and replace its content to a new address
         node_t *p_new = (node_t *)malloc(sizeof(node_t)); // address to place the old starting node
         p_new->data = pa->data;
@@ -83,6 +83,17 @@ void add_element(node_t *pa, int index, int element)
         pa->next = p_new;
         return;
     }
+}
+
+int get_element(node_t *pa, int index) {
+    for (int i = 0; i <= index && pa != NULL; ++i) {
+        if (i != index) {
+            pa = pa->next;
+            continue;
+        }
+        return pa->data;
+    }
+    return -1;
 }
 
 void free_array(node_t *pa)
