@@ -1,4 +1,3 @@
 Get rid of Vim swap files as they remain when switching branches and crime conflicts;
 
-Fix gen_queue() -- it returns same numbers for each call;
 Factor out gen_queue() to queue.c.
