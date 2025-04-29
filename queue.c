@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 
 typedef struct node_t node_t;
@@ -45,4 +46,12 @@ int dequeue(queue *s) {
         return -1;
     }
     return get_element(s->data, ++(s->first));
+}
+
+queue gen_queue(int n)
+{
+    queue q = init_queue();
+    for (int i = 0; i < n; ++i)
+        enqueue(&q, rand() % 20);
+    return q;
 }

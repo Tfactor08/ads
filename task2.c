@@ -22,7 +22,6 @@ queue init_queue();
 int is_empty(queue*);
 void enqueue(queue*, int);
 int dequeue(queue*);
-
 queue gen_queue(int);
 
 /* form a stack S containing all unique elements of queues L1 and L2 */
@@ -41,12 +40,4 @@ int main()
         printf("%d\t", dequeue(&l2));
 
     return 0;
-}
-
-queue gen_queue(int n)
-{
-    queue q = init_queue();
-    for (int i = 0; i < n; ++i)
-        enqueue(&q, rand() % 20);
-    return q;
 }
