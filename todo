@@ -1,3 +1,1 @@
 Get rid of Vim swap files as they remain when switching branches and crime conflicts;
-
-Factor out gen_queue() to queue.c.
