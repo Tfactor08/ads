@@ -24,7 +24,7 @@ stack init_stack() {
     return s;
 }
 
-int is_empty(stack *s) {
+int is_stack_empty(stack *s) {
     return s->top == -1;
 }
 
@@ -38,7 +38,7 @@ void push(stack *s, int value) {
 }
 
 int pop(stack *s) {
-    if (is_empty(s)) {
+    if (is_stack_empty(s)) {
         printf("Cannot pop from empty stack\n");
         return -1;
     }

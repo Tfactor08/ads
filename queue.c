@@ -27,31 +27,35 @@ queue init_queue() {
     return s;
 }
 
-int is_empty(queue *s) {
+int is_queue_empty(queue *s) {
     return s->top == -1;
 }
 
-void enqueue(queue *s, int value) {
-    if (s->top == -1) {
-        s->data->data = value;
-        s->top++;
+void enqueue(queue *q, int value) {
+    if (q->top == -1) {
+        q->data->data = value;
+        q->top++;
         return;
     }
-    add_element(s->data, ++(s->top), value);
+    add_element(q->data, ++(q->top), value);
 }
 
-int dequeue(queue *s) {
-    if (is_empty(s)) {
+int dequeue(queue *q) {
+    if (is_queue_empty(q)) {
         printf("Cannot pop from empty queue\n");
         return -1;
     }
-    return get_element(s->data, ++(s->first));
+    return get_element(q->data, ++(q->first));
 }
 
-queue gen_queue(int n)
+queue gen_queue(int n, char f)
 {
     queue q = init_queue();
     for (int i = 0; i < n; ++i)
-        enqueue(&q, rand() % 20);
+    {
+        int r = rand() % 20;
+        enqueue(&q, r);
+        if (f) printf("%d\t", r);
+    }
     return q;
 }
