@@ -53,3 +53,6 @@ dkms.conf
 
 # Vim files
 *.*.sw*
+
+# Office files
+*.docx
