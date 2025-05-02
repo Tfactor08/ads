@@ -1,21 +1,23 @@
 #include <stdio.h>
 
-typedef struct node_t node_t;
-typedef struct stack stack;
+#include "stack.h"
 
-node_t* init_array(int n);
-void add_element(node_t*, int, int);
-int get_element(node_t*, int);
-
-struct node_t {
-    int data;
-    node_t *next;
-};
-
-struct stack {
-    node_t *data;
-    int top;
-};
+//typedef struct node_t node_t;
+//typedef struct stack stack;
+//
+//node_t* init_array(int n);
+//void add_element(node_t*, int, int);
+//int get_element(node_t*, int);
+//
+//struct node_t {
+//    int data;
+//    node_t *next;
+//};
+//
+//struct stack {
+//    node_t *data;
+//    int top;
+//};
 
 stack init_stack() {
     stack s; 
@@ -44,3 +46,11 @@ int pop(stack *s) {
     }
     return get_element(s->data, (s->top)--);
 }
+
+//int main()
+//{
+//    stack s = init_stack();
+//    push(&s, 69);
+//    push(&s, 42);
+//    printf("%d\t%d\n", pop(&s), pop(&s));
+//}

@@ -1,22 +1,6 @@
 #include <stdio.h>
 
-typedef struct node_t node_t;
-typedef struct queue queue;
-
-node_t* init_array(int n);
-void add_element(node_t*, int, int);
-int get_element(node_t*, int);
-
-struct node_t {
-    int data;
-    node_t *next;
-};
-
-struct queue {
-    node_t *data;
-    int top;
-    int first;
-};
+#include "queue.h"
 
 queue init_queue() {
     queue s; 
@@ -46,3 +30,11 @@ int dequeue(queue *s) {
     }
     return get_element(s->data, ++(s->first));
 }
+
+//int main()
+//{
+//    queue q = init_queue();
+//    enqueue(&q, 69);
+//    enqueue(&q, 42);
+//    printf("%d\t%d\n", dequeue(&q), dequeue(&q));
+//}

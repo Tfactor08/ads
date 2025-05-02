@@ -12,5 +12,6 @@ node_t* init_array(int n);
 void go_through(node_t*);
 void free_array(node_t*);
 void add_element(node_t*, int, int);
+int get_element(node_t*, int);
 
 #endif
