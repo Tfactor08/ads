@@ -1,7 +1,3 @@
-#include <stdlib.h>
-#include <time.h>
-#include <stdio.h>
-
 #include "dynamic-array.h"
 
 // 13.03.25
@@ -97,5 +93,5 @@ void free_array(node_t *pa)
 //{
 //    node_t *arr = init_array(10);    
 //    go_through(arr);
-//    free(arr);
+//    free_array(arr);
 //}

@@ -1,6 +1,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
+#include <stdio.h>
 #include "dynamic-array.h"
 
 typedef struct {
@@ -9,7 +10,8 @@ typedef struct {
     int first;
 } queue;
 
-int is_empty(queue*);
+queue init_queue();
+int is_queue_empty(queue*);
 void enqueue(queue*, int);
 int dequeue(queue*);
 

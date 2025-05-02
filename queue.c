@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "queue.h"
 
 queue init_queue() {
@@ -10,7 +8,7 @@ queue init_queue() {
     return s;
 }
 
-int is_empty(queue *s) {
+int is_queue_empty(queue *s) {
     return s->top == -1;
 }
 
@@ -24,7 +22,7 @@ void enqueue(queue *s, int value) {
 }
 
 int dequeue(queue *s) {
-    if (is_empty(s)) {
+    if (is_queue_empty(s)) {
         printf("Cannot pop from empty queue\n");
         return -1;
     }

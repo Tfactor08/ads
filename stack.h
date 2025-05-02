@@ -1,6 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include <stdio.h>
 #include "dynamic-array.h"
 
 typedef struct {
@@ -9,7 +10,7 @@ typedef struct {
 } stack;
 
 stack init_stack();
-int is_empty(stack*);
+int is_stack_empty(stack*);
 void push(stack*, int);
 int pop(stack*);
 

@@ -1,44 +1,34 @@
-#include <stdio.h>
-
-typedef struct node_t node_t;
-typedef struct stack stack;
-typedef struct queue queue;
-
-// dynamic-array.c
-node_t* init_array(int n);
-void go_through(node_t*);
-void free_array(node_t*);
-void add_element(node_t*, int, int);
-int get_element(node_t*, int);
-
-// stack.c
-//stack init_stack();
-//int is_empty(stack *s);
-//void push(stack *s, int);
-//int pop(stack *s);
-
-// queue.c
-queue init_queue();
-int is_empty(queue *s);
-void enqueue(queue *s, int);
-int dequeue(queue *s);
-
-struct queue {
-    node_t *data;
-    int top;
-};
+#include "dynamic-array.h"
+#include "stack.h"
+#include "queue.h"
 
 int main()
 {
+    // queue.c
+    printf("queue.c\n");
     queue q = init_queue();
     enqueue(&q, 69);
     enqueue(&q, 69);
-    enqueue(&q, 42);
-    printf("%d\n", dequeue(&q));
-    printf("%d\n", dequeue(&q));
-    printf("%d\n", dequeue(&q));
-    printf("%d\n", dequeue(&q));
+    printf("\t%d\n", dequeue(&q));
+    printf("\t%d\n", dequeue(&q));
     free_array(q.data);
+    putchar('\n');
+
+    // stack.c
+    printf("stack.c\n");
+    stack s = init_stack();
+    push(&s, 69);
+    push(&s, 42);
+    printf("\t%d\n", pop(&s));
+    printf("\t%d\n", pop(&s));
+    putchar('\n');
+
+    // dynamic-array.c
+    printf("dynamic-array.c\n");
+    node_t *arr = init_array(4);    
+    add_element(arr, 4, 69);
+    go_through(arr);
+    free_array(arr);
 
     return 0;
 }
