@@ -1,32 +1,32 @@
 #include "queue.h"
 
 queue init_queue() {
-    queue s; 
-    s.top = -1;
-    s.first = -1;
-    s.data = init_array(0);
-    return s;
+    queue q; 
+    q.first = -1;
+    q.last = -1; // top
+    q.data = init_array(0);
+    return q;
 }
 
-int is_queue_empty(queue *s) {
-    return s->top == -1;
+int is_queue_empty(queue *q) {
+    return q->last == -1;
 }
 
-void enqueue(queue *s, int value) {
-    if (s->top == -1) {
-        s->data->data = value;
-        s->top++;
+void enqueue(queue *q, int value) {
+    if (is_queue_empty(q)) {
+        q->data->data = value;
+        q->last++;
         return;
     }
-    add_element(s->data, ++(s->top), value);
+    add_element(q->data, ++(q->last), value);
 }
 
-int dequeue(queue *s) {
-    if (is_queue_empty(s)) {
+int dequeue(queue *q) {
+    if (is_queue_empty(q)) {
         printf("Cannot pop from empty queue\n");
         return -1;
     }
-    return get_element(s->data, ++(s->first));
+    return get_element(q->data, ++(q->first));
 }
 
 //int main()

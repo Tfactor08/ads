@@ -26,7 +26,9 @@ int main()
     // dynamic-array.c
     printf("dynamic-array.c\n");
     node_t *arr = init_array(4);    
-    add_element(arr, 4, 69);
+    go_through(arr);
+    putchar('\n');
+    add_element(arr, 0, 69);
     go_through(arr);
     free_array(arr);
 

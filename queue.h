@@ -6,8 +6,8 @@
 
 typedef struct {
     node_t *data;
-    int top;
     int first;
+    int last;
 } queue;
 
 queue init_queue();
