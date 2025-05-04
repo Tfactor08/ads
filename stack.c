@@ -34,4 +34,7 @@ int pop(stack *s) {
 //    push(&s, 69);
 //    push(&s, 42);
 //    printf("%d\t%d\n", pop(&s), pop(&s));
+//    printf("%d\n", s.top);
+//    push(&s, 13);
+//    printf("%d\n", pop(&s));
 //}
