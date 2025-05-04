@@ -1,9 +1,12 @@
 #include "queue.h"
 
+// TODO
+// turns out it was working incorrectly -- shit happens when there don't remain elements
+
 queue init_queue() {
     queue q; 
     q.first = -1;
-    q.last = -1; // top
+    q.last = -1;
     q.data = init_array(0);
     return q;
 }
@@ -15,7 +18,7 @@ int is_queue_empty(queue *q) {
 void enqueue(queue *q, int value) {
     if (is_queue_empty(q)) {
         q->data->data = value;
-        q->last++;
+        q->first = q->last = 0;
         return;
     }
     add_element(q->data, ++(q->last), value);
@@ -26,13 +29,55 @@ int dequeue(queue *q) {
         printf("Cannot pop from empty queue\n");
         return -1;
     }
-    return get_element(q->data, ++(q->first));
+    if (q->first == q->last) {
+        int e = get_element(q->data, q->first);
+        q->first = q->last = -1;
+        return e;
+    }
+    return get_element(q->data, (q->first)++);
 }
 
 //int main()
 //{
 //    queue q = init_queue();
+//
+//    printf("first -> %d\n", q.first);
+//    printf("last -> %d\n", q.last);
+//
+//    putchar('\n');
+//
 //    enqueue(&q, 69);
 //    enqueue(&q, 42);
-//    printf("%d\t%d\n", dequeue(&q), dequeue(&q));
+//    enqueue(&q, 42);
+//    enqueue(&q, 42);
+//
+//    printf("enqueue -> %d\n", 69);
+//    printf("enqueue -> %d\n", 42);
+//    printf("enqueue -> %d\n", 42);
+//    printf("enqueue -> %d\n", 42);
+//
+//    putchar('\n');
+//
+//    printf("first -> %d\n", q.first);
+//    printf("last -> %d\n", q.last);
+//
+//    putchar('\n');
+//
+//    printf("dequeue -> %d\n", dequeue(&q));
+//    printf("dequeue -> %d\n", dequeue(&q));
+//
+//    putchar('\n');
+//
+//    printf("first -> %d\n", q.first);
+//    printf("last -> %d\n", q.last);
+//
+//    putchar('\n');
+//
+//    printf("dequeue -> %d\n", dequeue(&q));
+//    printf("dequeue -> %d\n", dequeue(&q));
+//
+//    putchar('\n');
+//
+//    printf("first -> %d\n", q.first);
+//    printf("last -> %d\n", q.last);
 //}
