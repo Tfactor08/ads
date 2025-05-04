@@ -1,8 +1,5 @@
 #include "queue.h"
 
-// TODO
-// turns out it was working incorrectly -- shit happens when there don't remain elements
-
 queue init_queue() {
     queue q; 
     q.first = -1;
@@ -80,4 +77,6 @@ int dequeue(queue *q) {
 //
 //    printf("first -> %d\n", q.first);
 //    printf("last -> %d\n", q.last);
+//
+//    dequeue(&q);
 //}
