@@ -1,43 +1,24 @@
-#include <stdlib.h>
-#include <stdio.h>
-
-typedef struct node_t node_t;
-typedef struct queue queue;
-
-node_t* init_array(int n);
-void add_element(node_t*, int, int);
-int get_element(node_t*, int);
-
-struct node_t {
-    int data;
-    node_t *next;
-};
-
-struct queue {
-    node_t *data;
-    int top;
-    int first;
-};
+#include "queue.h"
 
 queue init_queue() {
-    queue s; 
-    s.top = -1;
-    s.first = -1;
-    s.data = init_array(0);
-    return s;
+    queue q; 
+    q.first = -1;
+    q.last = -1;
+    q.data = init_array(0);
+    return q;
 }
 
-int is_queue_empty(queue *s) {
-    return s->top == -1;
+int is_queue_empty(queue *q) {
+    return q->last == -1;
 }
 
 void enqueue(queue *q, int value) {
-    if (q->top == -1) {
+    if (is_queue_empty(q)) {
         q->data->data = value;
-        q->top++;
+        q->first = q->last = 0;
         return;
     }
-    add_element(q->data, ++(q->top), value);
+    add_element(q->data, ++(q->last), value);
 }
 
 int dequeue(queue *q) {
@@ -45,17 +26,69 @@ int dequeue(queue *q) {
         printf("Cannot pop from empty queue\n");
         return -1;
     }
-    return get_element(q->data, ++(q->first));
+    if (q->first == q->last) {
+        int e = get_element(q->data, q->first);
+        q->first = q->last = -1;
+        return e;
+    }
+    return get_element(q->data, (q->first)++);
 }
 
-queue gen_queue(int n, char f)
+queue gen_queue(int n, int out)
 {
     queue q = init_queue();
-    for (int i = 0; i < n; ++i)
-    {
-        int r = rand() % 20;
+    for (int i = 0; i < n; ++i) {
+        int r = rand() % 21;
         enqueue(&q, r);
-        if (f) printf("%d\t", r);
+        if (out)
+            printf("%d\t", r);
     }
     return q;
 }
+
+//int main()
+//{
+//    queue q = init_queue();
+//
+//    printf("first -> %d\n", q.first);
+//    printf("last -> %d\n", q.last);
+//
+//    putchar('\n');
+//
+//    enqueue(&q, 69);
+//    enqueue(&q, 42);
+//    enqueue(&q, 42);
+//    enqueue(&q, 42);
+//
+//    printf("enqueue -> %d\n", 69);
+//    printf("enqueue -> %d\n", 42);
+//    printf("enqueue -> %d\n", 42);
+//    printf("enqueue -> %d\n", 42);
+//
+//    putchar('\n');
+//
+//    printf("first -> %d\n", q.first);
+//    printf("last -> %d\n", q.last);
+//
+//    putchar('\n');
+//
+//    printf("dequeue -> %d\n", dequeue(&q));
+//    printf("dequeue -> %d\n", dequeue(&q));
+//
+//    putchar('\n');
+//
+//    printf("first -> %d\n", q.first);
+//    printf("last -> %d\n", q.last);
+//
+//    putchar('\n');
+//
+//    printf("dequeue -> %d\n", dequeue(&q));
+//    printf("dequeue -> %d\n", dequeue(&q));
+//
+//    putchar('\n');
+//
+//    printf("first -> %d\n", q.first);
+//    printf("last -> %d\n", q.last);
+//
+//    dequeue(&q);
+//}
