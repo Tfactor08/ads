@@ -1,40 +1,7 @@
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
 #include <time.h>
 
-typedef struct node_t node_t;
-typedef struct queue queue;
-typedef struct stack stack;
-
-struct node_t {
-    int data;
-    node_t *next;
-};
-
-struct queue {
-    node_t *data;
-    int top;
-    int first;
-};
-
-struct stack {
-    node_t *data;
-    int top;
-};
-
-// queue.c
-queue init_queue();
-int is_queue_empty(queue*);
-void enqueue(queue*, int);
-int dequeue(queue*);
-queue gen_queue(int, char);
-
-// stack.c
-stack init_stack();
-void push(stack*, int);
-int pop(stack*);
-int is_stack_empty(stack*);
+#include "queue.h"
+#include "stack.h"
 
 int stack_has(stack, int);
 void go_through_stack(stack*);
