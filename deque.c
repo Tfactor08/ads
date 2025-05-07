@@ -69,51 +69,51 @@ int pop_back(deque *d) {
     return get_element(d->data, (d->last)--);
 }
 
-int main()
-{
-    deque d = init_deque();
-
-    printf("first -> %d\n", d.first);
-    printf("last -> %d\n", d.last);
-
-    putchar('\n');
-
-    push_back(&d, 1);
-    push_back(&d, 2);
-    push_back(&d, 3);
-
-    printf("push_back -> %d\n", 1);
-    printf("push_back -> %d\n", 2);
-    printf("push_back -> %d\n", 3);
-
-    putchar('\n');
-
-    push_front(&d, 69);
-
-    printf("push_front -> %d\n", 69);
-
-    printf("first -> %d\n", d.first);
-    printf("last -> %d\n", d.last);
-
-    putchar('\n');
-
-    printf("pop_front -> %d\n", pop_front(&d));
-    printf("pop_front -> %d\n", pop_front(&d));
-
-    putchar('\n');
-
-    printf("first -> %d\n", d.first);
-    printf("last -> %d\n", d.last);
-
-    putchar('\n');
-
-    printf("pop_front -> %d\n", pop_front(&d));
-    printf("pop_front -> %d\n", pop_front(&d));
-
-    putchar('\n');
-
-    printf("first -> %d\n", d.first);
-    printf("last -> %d\n", d.last);
-
-    pop_front(&d);
-}
+//int main()
+//{
+//    deque d = init_deque();
+//
+//    printf("first -> %d\n", d.first);
+//    printf("last -> %d\n", d.last);
+//
+//    putchar('\n');
+//
+//    push_back(&d, 1);
+//    push_back(&d, 2);
+//    push_back(&d, 3);
+//
+//    printf("push_back -> %d\n", 1);
+//    printf("push_back -> %d\n", 2);
+//    printf("push_back -> %d\n", 3);
+//
+//    putchar('\n');
+//
+//    push_front(&d, 69);
+//
+//    printf("push_front -> %d\n", 69);
+//
+//    printf("first -> %d\n", d.first);
+//    printf("last -> %d\n", d.last);
+//
+//    putchar('\n');
+//
+//    printf("pop_front -> %d\n", pop_front(&d));
+//    printf("pop_front -> %d\n", pop_front(&d));
+//
+//    putchar('\n');
+//
+//    printf("first -> %d\n", d.first);
+//    printf("last -> %d\n", d.last);
+//
+//    putchar('\n');
+//
+//    printf("pop_front -> %d\n", pop_front(&d));
+//    printf("pop_front -> %d\n", pop_front(&d));
+//
+//    putchar('\n');
+//
+//    printf("first -> %d\n", d.first);
+//    printf("last -> %d\n", d.last);
+//
+//    pop_front(&d);
+//}

@@ -2,7 +2,6 @@
 #define DEQUE_H
 
 #include <stdio.h>
-#include <limits.h>
 #include "dynamic-array.h"
 
 typedef struct {
@@ -11,9 +10,11 @@ typedef struct {
     int last;
 } deque;
 
-deque init_queue();
-int is_queue_empty(deque*);
-void enqueue(deque*, int);
-int dequeue(deque*);
+deque init_deque();
+int is_deque_empty(deque*);
+void push_back(deque*, int);
+int pop_back(deque*);
+void push_front(deque*, int);
+int pop_front(deque*);
 
 #endif
