@@ -2,41 +2,44 @@
 
 deque gen_deque(int, int);
 void remove_negatives(deque*);
-
-// TODO
-// no clue how to iterate through deque elements since we can't know when it becomes empty if we
-// don't pop the elements. Does that mean we have to pop all of them, save somewhere (in another
-// deque?), then push them back to the original deque?
+void go_through_deque(deque);
 
 /* process deque D containing integers: remove all negative values */
 int main()
 {
     srand(time(NULL));
 
-    deque d = gen_deque(10, 1);
+    deque d = gen_deque(10, 0);
+    go_through_deque(d);
     putchar('\n');
 
     remove_negatives(&d);
+    go_through_deque(d);
 
     return 0;
 }
 
 void remove_negatives(deque *d)
 {
-    while (!is_deque_empty(d)) { // TODO wrong!
+    deque dtmp = init_deque();
+    while (!is_deque_empty(d)) {
         int n = pop_back(d);
         if (n >= 0)
-            push_back(d, n);
+            push_back(&dtmp, n);
+    }
+    while (!is_deque_empty(&dtmp)) {
+        int n = pop_back(&dtmp);
+        push_back(d, n);
     }
 }
 
-void go_through_deque(deque *d)
+void go_through_deque(deque d)
 {
-    while (!is_deque_empty(d)) { // TODO wrong!
-        int n = pop_back(d);
+    while (!is_deque_empty(&d)) {
+        int n = pop_front(&d);
         printf("%d\t", n);
-        push_back(d, n);
     }
+    putchar('\n');
 }
 
 deque gen_deque(int n, int out)
