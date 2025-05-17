@@ -2,7 +2,7 @@
 #include <stdbool.h>
 
 // Compare and swap elements to make them bitonic
-void compareAndSwap(int a[], int i, int j, bool dir) {
+void compare_and_swap(int a[], int i, int j, bool dir) {
     if (dir == (a[i] > a[j])) {
         int temp = a[i];
         a[i] = a[j];
@@ -11,29 +11,29 @@ void compareAndSwap(int a[], int i, int j, bool dir) {
 }
 
 // Recursively merge a bitonic sequence
-void bitonicMerge(int a[], int low, int cnt, bool dir) {
+void bitonic_merge(int a[], int low, int cnt, bool dir) {
     if (cnt > 1) {
         int k = cnt / 2;
         for (int i = low; i < low + k; i++)
-            compareAndSwap(a, i, i + k, dir);
-        bitonicMerge(a, low, k, dir);
-        bitonicMerge(a, low + k, k, dir);
+            compare_and_swap(a, i, i + k, dir);
+        bitonic_merge(a, low, k, dir);
+        bitonic_merge(a, low + k, k, dir);
     }
 }
 
 // Recursively generate a bitonic sequence
-void bitonicSort(int a[], int low, int cnt, bool dir) {
+void bitonic_sort(int a[], int low, int cnt, bool dir) {
     if (cnt > 1) {
         int k = cnt / 2;
-        bitonicSort(a, low, k, true);    // Sort ascending
-        bitonicSort(a, low + k, k, false); // Sort descending
-        bitonicMerge(a, low, cnt, dir);  // Merge the whole sequence
+        bitonic_sort(a, low, k, true);    // Sort ascending
+        bitonic_sort(a, low + k, k, false); // Sort descending
+        bitonic_merge(a, low, cnt, dir);  // Merge the whole sequence
     }
 }
 
 // Helper function to sort an array
 void sort(int a[], int N, bool ascending) {
-    bitonicSort(a, 0, N, ascending);
+    bitonic_sort(a, 0, N, ascending);
 }
 
 // Test the implementation
