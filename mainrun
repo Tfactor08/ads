@@ -1,0 +1,1 @@
+cc main.c bitonic_sort.c cocktail_sort.c heap_sort.c array_util.c
