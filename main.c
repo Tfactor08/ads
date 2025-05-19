@@ -7,38 +7,47 @@ void cocktail_sort(int arr[], int n, int stats[]);
 void heap_sort(int arr[], int n, int stats[]);
 void bitonic_sort(int arr[], int n, int stats[]);
 
+void test_each(int n);
 double measure(void (*f)(int[], int, int[]), int arr[], int n, int stats[]);
 void print_stats(double time, int stats[]);
 
+void (*algos[3])(int[], int, int[]) = {cocktail_sort, heap_sort, bitonic_sort};
+char *algo_names[] = {"cocktail", "heap", "bitonic"};
+int ns[] = {100, 1000, 10000};
+
 int main(int argc, char **argv)
 {
-    void (*algos[3])(int[], int, int[]) = {cocktail_sort, heap_sort, bitonic_sort};
-    char *algo_names[] = {"cocktail", "heap", "bitonic"};
-    int ns[] = {100, 1000, 10000};
-    int stats[2];
 
     for (int i = 0; i < 3; i++) {
         int n = ns[i];
-        printf("--- n = %d ---\n", n);
 
+        printf("n = %d\n", n);
+        printf("----------------------------------------------------------------\n");
+
+        test_each(n);
+
+        printf("----------------------------------------------------------------\n\n");
+    }
+
+    return 0;
+}
+
+void test_each(int n)
+{
         for (int j = 0; j < 3; j++) {
             int arr[n];
-            double t;
+            double time;
             int stats[2];
 
             fill_array(arr, n);
 
-            t = measure(algos[j], arr, n, stats);
+            time = measure(algos[j], arr, n, stats);
 
             printf("%s:\n", algo_names[j]);
-            print_stats(t, stats);
-
-            putchar('\n');
+            print_stats(time, stats);
+            if (j != 2)
+                putchar('\n');
         }
-        putchar('\n');
-    }
-
-    return 0;
 }
 
 double measure(void (*f)(int[], int, int[]), int arr[], int n, int stats[])
