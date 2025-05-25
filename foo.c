@@ -49,6 +49,13 @@ int main()
 {
     srand(time(NULL));
 
+    for (int i = 0; i < 100; i++) {
+        int left_bound = 5;
+        int right_bound = 10;
+        printf("%d\n", (rand() % (right_bound+1 - left_bound)) + left_bound); // [0, 10]; [0, 5]; [5, 10]
+    }
+    exit(0);
+
     test_arr_breaking();
     
     // [-10, 10] / [-8, 10]

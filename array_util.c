@@ -51,11 +51,14 @@ void repeat_element(int p, int arr[], int n)
 // arr must be sorted!
 // c -- desired amount of sorted sub arrays
 // n -- array size
+//
+// TODO
+// manage edge cases.
 void break_into_sorted_subarrs(int c, int arr[], int n)
 {
     int break_points[n];
-    int min_rnd = -10;
-    int max_rnd = 10;
+    int min_rnd = -11;
+    int max_rnd = 11;
 
     for (int i = 0; i < n; ++i)
         break_points[i] = i;
@@ -65,11 +68,51 @@ void break_into_sorted_subarrs(int c, int arr[], int n)
         int bp = break_points[i];
         int excluded_low = min_rnd, excluded_high = max_rnd;
 
-        // edge case -- adjacent split points may cancel each other
-        if (bp == break_points[i+1]) {
-            // new value at bp must be less than previous
-            if (bp != 0)
-                excluded_low = arr[bp-1];
+        // edge case: adjacent split points (may cancel each other)
+        if (bp == break_points[i+1] + 1) {
+
+            // edge case within edge case: index at left array bound
+            if (bp == 0) {
+                // here, we have only one option -- "gt next; gt next and lt prev" (i.e. isolate)
+                
+                // another edge case: the element we need to isolate can't be isolated
+                if (arr[bp] == arr[bp+2]) {
+                    // skip as I'm no clue what to do here
+                    i++;
+                    continue;
+                }
+
+                // must be gt next
+                int lb = arr[1] + 1;
+                int new_val1 = (rand() % (max_rnd+1 - lb)) + lb; // [arr[1]+1, max_rnd]
+                arr[0] = new_val1;
+
+                // must be gt next and lt prev
+                int lb = arr[2] + 1;
+                int new_val2 = (rand() % (new_val1 - lb)) + lb; // [arr[2]+1, new_val1-1]
+                arr[1] = new_val2;
+
+                i++;
+                continue;
+            }
+
+            // edge case within edge case: index at right array bound
+            if (bp == n-2) {
+                // here, we must start and end with lt prev
+                int rb = arr[n-2-1] - 1;
+                int new_val1 = (rand() % (rb+1 - min_rnd)) + min_rnd; // [min_rnd, arr[n-2-1]]
+                arr[n-2] = new_val1;
+
+                int rb = arr[n-1-1] - 1;
+                int new_val2 = (rand() % (rb+1 - min_rnd)) + min_rnd; // [min_rnd, arr[n-1-1]]
+                arr[n-1] = new_val2;
+
+                i++;
+                continue;
+            }
+            
+            // not edge case
+
             i++;
             continue;
         }
