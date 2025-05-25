@@ -74,7 +74,7 @@ void break_into_sorted_subarrs(int c, int arr[], int n)
         int excluded_low = min_rnd, excluded_high = max_rnd;
 
         // edge case: adjacent split points (may cancel each other)
-        if (bp == break_points[i+1] + 1 || bp == break_points[i+1] - 1) {
+        if (bp == break_points[i+1] - 1) {
             // edge case within edge case: index at left array bound
             if (bp == 0) {
                 // here, we have only one option -- "gt next; gt next and lt prev" (i.e. isolate)
