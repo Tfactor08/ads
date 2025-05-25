@@ -1,0 +1,19 @@
+Edge cases: two break points are adjacent
+
+Upd: I'm no clue what tf is going on as I see no fucking symmetry.
+Upd: turns out, there was a symmetry.
+
+0   1   1   5   5   8   9   10  10
+
+
+0   1   6   -4   5   8   9   10  10      Not Ok (greater than next, less than prev/greater than next)
+
+0   1   0   -2   5   8   9   10  10      Ok (less than prev, less than prev)
+
+0   1   1   5   5   -4   11   10  10     Ok (less than prev, greater than next)
+
+0   1   1   5   5   8   9   10  10       Edge case: only {less than prev, less than prev} works
+                            ^   ^
+
+0   1   1   5   5   8   9   10  10       Edge case: impossible to break into 3
+^   ^
