@@ -2,7 +2,7 @@ Edge cases: two break points are adjacent
 
 Overall:
 when index is at left bound -- starting with "less than prev" makes no sense;
-when index is at right bound -- starting with "greater than next" makes no sense;
+when index is at right bound -- starting with "greater than next" makes no sense.
 
 when we start with "greater than next", we have only one option left for the next index --
 "greater than next and less than prev" (i.e. isolation) (!there's also an edge case, fuck);
@@ -14,6 +14,9 @@ Archive
 ------------------------------------------------------------------------------------------------
 Upd: I'm no clue what tf is going on as I see no fucking symmetry.
 Upd: turns out, there was a symmetry.
+
+0   1   1   5   5   8   9   10  10
+
 
 0   1   1   5   5   8   9   10  10
 
