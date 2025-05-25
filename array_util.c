@@ -1,7 +1,9 @@
 #include "array_util.h"
 
 // TODO
-// test break_into_sorted_subarrs
+// so, now we know the edge cases -- when the split points are adjacent.
+// and even edge cases within edge cases -- when the split points are located at the array bounds.
+// look [breaking_hell]
 
 static void shuffle(int *arr, int n)
 {
@@ -61,13 +63,22 @@ void break_into_sorted_subarrs(int c, int arr[], int n)
 
     for (int i = 0; i < c-1; ++i) {
         int bp = break_points[i];
-        // ensure new_val is not in range [arr[bp-1], arr[bp+1]] since in that case array would've stayed sorted
         int excluded_low = min_rnd, excluded_high = max_rnd;
+
+        // edge case -- adjacent split points may cancel each other
+        if (bp == break_points[i+1]) {
+            // new value at bp must be less than previous
+            if (bp != 0)
+                excluded_low = arr[bp-1];
+            i++;
+            continue;
+        }
+
+        // ensure new_val is not in range [arr[bp-1], arr[bp+1]] since otherwise array stays sorted
         if (bp != 0)
             excluded_low = arr[bp-1];
         if (bp != n-1)
             excluded_high = arr[bp+1];
-
         int excluded_size = excluded_high - excluded_low + 1;
         int new_val = rand() % (22 - excluded_size) - 10;
         if (new_val >= excluded_low) new_val += excluded_size;

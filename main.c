@@ -23,10 +23,10 @@ static char *algo_names[] = {"cocktail", "heap", "bitonic"};
 static int ns[] = {100, 1000, 10000};
 
 // TODO
-// well, we need to generate 3*4 arrays.
-// of course it's better to generate a random one just once and then copy it (don't know how) and modify.
-// i want to keep current logic, but repeat it for each array type.
-// so i want testing different ns for each array type, not different arrays for each n.
+// Well, we need to generate 3*4 arrays.
+// Of course it's better to generate a random one just once and then copy it and modify.
+// I want to keep current logic, but repeat it for each array type.
+// So I want testing different ns for each array type, not different arrays for each n.
 
 int main(int argc, char **argv)
 {
@@ -89,7 +89,6 @@ void test_arrays(char *test_name, int *arr1, int *arr2, int *arr3)
         }
         printf("----------------------------------------------------------------\n\n");
     }
-
 
     for (int i = 0; i < 3; ++i)
         free(arrs_cpy[i]);
