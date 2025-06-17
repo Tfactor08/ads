@@ -43,6 +43,12 @@ void test_arr_breaking()
     putchar('\n');
 }
 
+int rand_exclude(int exclude, int range) {
+    int rand_val = rand() % range;          // [0, range-1]
+    if (rand_val == exclude) rand_val = range; // Shift to 'range' if excluded
+    return rand_val % range;                // Wrap around (if shifted)
+}
+
 // TODO
 // well, array breaking seems to be working, but i'm not sure, so it needs further testing.
 
@@ -50,7 +56,40 @@ int main()
 {
     srand(time(NULL));
 
-    test_arr_breaking();
+    int arr1[] = {1, 2, 3};
+    int arr2[] = {4, 5, 6, 7};
+    int arr3[] = {8, 9};
+
+    int* arrs[] = {arr1, arr2, arr3};
+    int sizes[] = {3, 4, 2};
+
+    int** cpys = duplicate_arrays(arrs, 3, sizes);
+
+    cpys[2][0] = 69;
+
+    for (int i = 0; i < 2; ++i)
+        printf("%d\t", arr3[i]);
+    putchar('\n');
+
+    for (int i = 0; i < 2; ++i)
+        printf("%d\t", cpys[2][i]);
+
+    exit(0);
+
+    int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    for (int i = 0; i < n; ++i)
+        printf("%d\t", arr[i]);
+    putchar('\n');
+
+    int m = 50;
+    swap_with_random(m, arr, n);
+
+    for (int i = 0; i < n; ++i)
+        printf("%d\t", arr[i]);
+
+    //test_arr_breaking();
 
 
     //for (int i = 0; i < 100; i++) {

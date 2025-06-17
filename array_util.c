@@ -2,11 +2,6 @@
 
 void cocktail_sort(int[], int, int[]);
 
-// TODO
-// so, now we know the edge cases -- when the split points are adjacent.
-// and even edge cases within edge cases -- when the split points are located at the array bounds.
-// look [breaking_hell]
-
 static void shuffle(int *arr, int n)
 {
     if (n > 1) {
@@ -34,6 +29,32 @@ void fill_array(int arr[], int n)
         arr[i] = rand() % 21 - 10;
 }
 
+// count -- amount of arrays
+// sizes -- size of the each passed array
+int** duplicate_arrays(int **arrays, int count, int *sizes)
+{
+    int** arrays_cpy = (int**)malloc(count * sizeof(int*));
+    if (!arrays_cpy) {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(1);
+    }
+    for (int i = 0; i < count; ++i) {
+        arrays_cpy[i] = (int*)malloc(sizes[i] * sizeof(int));
+        if (!arrays_cpy[i]) {
+            fprintf(stderr, "Memory allocation failed for array %d\n", i);
+            exit(1);
+        }
+        memcpy(arrays_cpy[i], arrays[i], sizes[i] * sizeof(int));
+    }
+    return arrays_cpy;
+}
+
+void free_arrays(int **arrays, int count) {
+    for (int i = 0; i < count; i++)
+        free(arrays[i]);
+    free(arrays);
+}
+
 // p -- repetition %
 // n -- array size
 void repeat_element(int p, int arr[], int n)
@@ -50,13 +71,34 @@ void repeat_element(int p, int arr[], int n)
         arr[indexes[i]] = 69;
 }
 
+// m -- swap %
+// n -- array size
+void swap_with_random(int m, int arr[], int n)
+{
+    int indexes[n];
+    int swap_amount = n * ((double)m / 100);
+
+    for (int i = 0; i < n; ++i)
+        indexes[i] = i;
+
+    shuffle(indexes, n);
+
+    for (int i = 0; i < swap_amount; ++i) {
+        int old = arr[indexes[i]];
+        int new = rand() % 21 - 10;
+
+        // make sure new random element is different from the old one
+        if (new == old) new = 21;
+        new = new % 11; // convert to 0 if new == old
+
+        arr[indexes[i]] = new;
+    }
+}
+
 // arr must be sorted!
 // arr assumed to have the elements in range [-10, 10]
 // c -- desired amount of sorted sub arrays
 // n -- array size
-//
-// TODO
-// manage edge cases.
 void break_into_sorted_subarrs(int c, int arr[], int n)
 {
     int break_points[n];
@@ -82,7 +124,7 @@ void break_into_sorted_subarrs(int c, int arr[], int n)
                 // another edge case: the element we need to isolate can't be isolated
                 if (arr[bp+2] - arr[bp] <= 1) {
                     // skip as I'm no clue what to do here
-                    printf("FUCK!\n");
+                    printf("INFO: array breaking failed\n");
                     i++;
                     continue;
                 }

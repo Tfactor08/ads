@@ -31,6 +31,9 @@ static int swp_count = 0;
 
 void heap_sort(int arr[], int n, int stats[])
 {
+    int cmp_count = 0;
+    int swp_count = 0;
+
     heapify(arr, n);
     int last = n - 1;
     while (last > 0) {

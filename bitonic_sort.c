@@ -47,6 +47,9 @@ void sort(int a[], int low, int cnt, bool dir)
 
 void bitonic_sort(int a[], int n, int stats[])
 {
+    cmp_count = 0;
+    swp_count = 0;
+
     sort(a, 0, n, true);
 
     stats[0] = cmp_count;

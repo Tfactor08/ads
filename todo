@@ -1,0 +1,1 @@
+Heap Sort doesn't count compares and swaps correctly always returning the same values.

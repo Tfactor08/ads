@@ -31,6 +31,9 @@ static int swp_count = 0;
 
 void cocktail_sort(int arr[], int n, int stats[])
 {
+    cmp_count = 0;
+    swp_count = 0;
+
     for (int i = 0; i < n-1; i++)
     {
         bool swapped = false;
