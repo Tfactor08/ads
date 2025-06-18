@@ -9,7 +9,8 @@
 // Update: yes, it had. Even queue implementation had mistakes, so I fixed that first;
 // Seems like deque ops are also fixed, but everthing needs to be tested.
 
-deque init_deque() {
+deque init_deque()
+{
     deque d; 
     d.first = -1;
     d.last = -1;
@@ -17,11 +18,13 @@ deque init_deque() {
     return d;
 }
 
-int is_deque_empty(deque *d) {
+int is_deque_empty(deque *d)
+{
     return d->first == -1 && d->last == -1;
 }
 
-void push_back(deque *d, int value) {
+void push_back(deque *d, int value)
+{
     if (is_deque_empty(d)) {
         d->data->data = value;
         d->first = d->last = 0;
@@ -30,7 +33,8 @@ void push_back(deque *d, int value) {
     add_element(d->data, ++(d->last), value);
 }
 
-void push_front(deque *d, int value) {
+void push_front(deque *d, int value)
+{
     if (is_deque_empty(d)) {
         d->data->data = value;
         d->first = d->last = 0;
@@ -43,7 +47,8 @@ void push_front(deque *d, int value) {
     d->last++;
 }
 
-int pop_front(deque *d) {
+int pop_front(deque *d)
+{
     if (is_deque_empty(d)) {
         printf("Cannot pop from empty deque\n");
         return -1;
@@ -56,7 +61,8 @@ int pop_front(deque *d) {
     return get_element(d->data, (d->first)++);
 }
 
-int pop_back(deque *d) {
+int pop_back(deque *d)
+{
     if (is_deque_empty(d)) {
         printf("Cannot pop from empty deque\n");
         return -1;

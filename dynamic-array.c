@@ -15,7 +15,7 @@ node_t* init_array(int n)
     node_t *p = p_start;
 
     for (int i = 0; i < n-1; ++i) {
-        p->data = rand() % 21 - 10; // -> means (*p).
+        p->data = rand() % 21 - 10; // "->" means (*p).
         p->next = (node_t *)malloc(sizeof(node_t));
         p = p->next;
     }
@@ -30,7 +30,7 @@ node_t* init_array(int n)
 void go_through(node_t *pa)
 {
     while (pa != NULL) {
-        printf("%d\n", pa->data);
+        printf("%d\t", pa->data);
         pa = pa->next;
     }
 }
@@ -45,7 +45,8 @@ void add_element(node_t *pa, int index, int element)
         // to add an element to the start of the array we just need to add new node that points
         // to the old starting node. But in that case the address of the starting node will be
         // changed and we would have to return it. So instead we use the old starting node address
-        // to create new one and replace its content to a new address
+        // to initialize new one and make it point to the old starting node, which we have to allocate
+        // new memory space for
         node_t *p_new = (node_t *)malloc(sizeof(node_t)); // address to place the old starting node
         p_new->data = pa->data;
         p_new->next = pa->next;

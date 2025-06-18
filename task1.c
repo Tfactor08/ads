@@ -6,13 +6,17 @@ void add_zeros(node_t*);
 int main()
 {
     node_t *ap = init_array(5);
-    go_through(ap);
 
+    printf("Original stack S:\n");
+    go_through(ap);
     putchar('\n');
 
     add_zeros(ap);
 
+    printf("Processed stack:\n");
     go_through(ap);
+    putchar('\n');
+
     free_array(ap);
 
     return 0;

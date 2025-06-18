@@ -10,10 +10,11 @@ int main()
     srand(time(NULL));
 
     deque d = gen_deque(10, 0);
+    printf("Original deque D:\n");
     go_through_deque(d);
-    putchar('\n');
 
     remove_negatives(&d);
+    printf("Processed deque:\n");
     go_through_deque(d);
 
     return 0;

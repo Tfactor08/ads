@@ -12,10 +12,11 @@ int main()
     srand(time(NULL));
 
     stack s = init_stack();
+    printf("Queue L1:\n");
     queue l1 = gen_queue(10, 1);
     putchar('\n');
+    printf("Queue L2:\n");
     queue l2 = gen_queue(10, 1);
-    putchar('\n');
     putchar('\n');
 
     for (int i = 0; i < 10; ++i) {
@@ -23,13 +24,13 @@ int main()
         if (!stack_has(s, next))
             push(&s, next);
     }
-    putchar('\n');
     for (int i = 0; i < 10; ++i) {
         int next = dequeue(&l2);
         if (!stack_has(s, next))
             push(&s, next);
     }
 
+    printf("Stack S:\n");
     go_through_stack(&s);
     putchar('\n');
 

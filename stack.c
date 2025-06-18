@@ -1,17 +1,20 @@
 #include "stack.h"
 
-stack init_stack() {
+stack init_stack()
+{
     stack s; 
     s.top = -1;
     s.data = init_array(0);
     return s;
 }
 
-int is_stack_empty(stack *s) {
+int is_stack_empty(stack *s)
+{
     return s->top == -1;
 }
 
-void push(stack *s, int value) {
+void push(stack *s, int value)
+{
     if (s->top == -1) {
         s->data->data = value;
         s->top++;
@@ -20,7 +23,8 @@ void push(stack *s, int value) {
     add_element(s->data, ++(s->top), value);
 }
 
-int pop(stack *s) {
+int pop(stack *s)
+{
     if (is_stack_empty(s)) {
         printf("Cannot pop from empty stack\n");
         return -1;
